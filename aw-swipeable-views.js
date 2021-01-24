@@ -228,6 +228,7 @@ class AwSwipeableViews extends PolymerElement {
             if (node.nodeName === "VIEW") {
                 node.style.visibility = "hidden";
                 node.style.position = "absolute";
+                node.style.width = "100%";
                 node.style.transform = "translate(100%,0)";
                 node.style.opacity = 0;
                 this.views.push(node);
