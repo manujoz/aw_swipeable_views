@@ -1,0 +1,20 @@
+{
+	"name": "aw_swipeable_views",
+	"version": "0.0.1",
+	"description": "Swipeable Views Polymer 3",
+	"keywords": [
+		"Polymer",
+		"Web Components",
+		"Swipeable Views"
+	],
+	"author": "Manu Overa",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/manujoz/aw_swipeable_views.git"
+	},
+	"dependencies": {
+		"aw_polymer_3": "^1.1.20"
+	},
+	"types": "./index.d.ts",
+	"license": "ISC"
+}
