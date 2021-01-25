@@ -151,7 +151,7 @@ class AwSwipeableViews extends PolymerElement {
      *
      * Cambia de vista
      */
-    _viewChange() {
+    async _viewChange() {
         if (this.views.length === 0 || this.view === this.active || !this.views[this.view]) {
             return;
         }
@@ -160,8 +160,11 @@ class AwSwipeableViews extends PolymerElement {
         if (this.active !== null && this.view < this.active) {
             direction = "right";
         }
+        
+        const height = await this._viewHeight(this.view);
+        this.$.container.style.height = height + "px";
 
-        this.$.container.style.height = this._viewHeight(this.view) + "px";
+        console.log("Se resuelve")
 
         this.views[this.view].style.visibility = null;
         this.views[this.view].style.transform = direction === "left" ? "translate(100%,0)" : "translate(-100%,0)";
@@ -199,21 +202,26 @@ class AwSwipeableViews extends PolymerElement {
      * Devuelve la altura de una vista
      *
      * @param {number} view
-     * @returns {number}
+     * @returns {Promise}
      */
     _viewHeight(view) {
-        const div = document.createElement("DIV");
-        div.setAttribute("style", "position:absolute;bottom: 0; right: 0; z-inde: -11111; visibility:hidden");
+        return new Promise(( resolve ) => {
+            const div = document.createElement("DIV");
+            div.setAttribute("style", "position:absolute; bottom: 0; right: 0; z-index: -11111; visibility:hidden");
 
-        const clone = this.views[view].cloneNode(true);
-        clone.removeAttribute("style");
+            const clone = this.views[view].cloneNode(true);
+            clone.removeAttribute("style");
 
-        div.appendChild(clone);
-        document.body.appendChild(div);
-        const height = div.offsetHeight;
+            div.appendChild(clone);
+            document.body.appendChild(div);
 
-        document.body.removeChild(div);
-        return height;
+            setTimeout(() => {
+                const h = div.offsetHeight;
+                resolve(h);
+                document.body.removeChild(div);
+            }, 200);
+        });
+        
     }
 
     /**
