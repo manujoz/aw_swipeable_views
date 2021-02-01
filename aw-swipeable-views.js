@@ -164,8 +164,6 @@ class AwSwipeableViews extends PolymerElement {
         const height = await this._viewHeight(this.view);
         this.$.container.style.height = height + "px";
 
-        console.log("Se resuelve")
-
         this.views[this.view].style.visibility = null;
         this.views[this.view].style.transform = direction === "left" ? "translate(100%,0)" : "translate(-100%,0)";
 
