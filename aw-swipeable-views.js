@@ -22,7 +22,8 @@ class AwSwipeableViews extends PolymerElement {
 
     static get properties() {
         return {
-            view: { type: Number, value: 0, observer: "_viewChange" },
+            /** Vista que queremos mostrar del componente */
+            view: { type: Number, observer: "_viewChange" },
         };
     }
 
@@ -32,6 +33,7 @@ class AwSwipeableViews extends PolymerElement {
     constructor() {
         super();
 
+        this.view = 0;
         this.views = [];
         this.active = null;
         this.slotObserver = null;
