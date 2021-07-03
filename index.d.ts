@@ -50,3 +50,8 @@ interface AwSwipeableViews extends HTMLElement {
 	 */
 	previous( recusive?: boolean) : void
 }
+
+declare var AwSwipeableViews: {
+	prototype: AwSwipeableViews,
+	new(): AwSwipeableViews
+}
